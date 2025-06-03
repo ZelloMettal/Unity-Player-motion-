@@ -1,7 +1,7 @@
-using UnityEditor.Tilemaps;
+﻿using UnityEditor.Tilemaps;
 using UnityEngine;
 
-//Подвязываем компоненты к скрипту
+//Подвязываем компоненты к скрипту 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
