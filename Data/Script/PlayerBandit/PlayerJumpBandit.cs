@@ -1,18 +1,18 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 
-//Скрипт прыжка
+//РЎРєСЂРёРїС‚ РїСЂС‹Р¶РєР°
 public class PlayerJumpBandit : MonoBehaviour
 {
-    //Свойства скрипта
-    private string _boolJumpAnimation = "Jump"; // Параметр для аниматора
-    private bool _isJump = false;               // Состояние прыжка
-    private Animator _animator;                 // Компонент
+    //РЎРІРѕР№СЃС‚РІР° СЃРєСЂРёРїС‚Р° 
+    private string _boolJumpAnimation = "Jump"; // РџР°СЂР°РјРµС‚СЂ РґР»СЏ Р°РЅРёРјР°С‚РѕСЂР°
+    private bool _isJump = false;               // РЎРѕСЃС‚РѕСЏРЅРёРµ РїСЂС‹Р¶РєР°
+    private Animator _animator;                 // РљРѕРјРїРѕРЅРµРЅС‚
 
     private void Awake()
     {
-        //Получаем компонент
+        //РџРѕР»СѓС‡Р°РµРј РєРѕРјРїРѕРЅРµРЅС‚
         _animator = GetComponent<Animator>();
     }
     void Update()
@@ -20,13 +20,13 @@ public class PlayerJumpBandit : MonoBehaviour
         Jump();
     }
 
-    //Метод прыжка
+    //РњРµС‚РѕРґ РїСЂС‹Р¶РєР°
     private void Jump()
     {
-        //Получаем состояние из родительского класса
+        //РџРѕР»СѓС‡Р°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РёР· СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РєР»Р°СЃСЃР°
         _isJump = PlayerBandit.Instance.GetIsJump();
 
-        //Производим прыжок
+        //РџСЂРѕРёР·РІРѕРґРёРј РїСЂС‹Р¶РѕРє
         if (_isJump)        
             _animator.SetBool(_boolJumpAnimation, true);        
         else        

@@ -1,18 +1,18 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 
-//Скрипт атаки
+//РЎРєСЂРёРїС‚ Р°С‚Р°РєРё
 public class PlayerAttackBandit : MonoBehaviour
 {
-    //Свойства скрипта
-    private string _boolHitAnimation = "Hit";   // Параметр для аниматора
-    private bool _isHit = false;                // Состояние удара
-    private Animator _animator;                 // Компонент
+    //РЎРІРѕР№СЃС‚РІР° СЃРєСЂРёРїС‚Р° 
+    private string _boolHitAnimation = "Hit";   // РџР°СЂР°РјРµС‚СЂ РґР»СЏ Р°РЅРёРјР°С‚РѕСЂР°
+    private bool _isHit = false;                // РЎРѕСЃС‚РѕСЏРЅРёРµ СѓРґР°СЂР°
+    private Animator _animator;                 // РљРѕРјРїРѕРЅРµРЅС‚
 
     private void Awake()
     {
-        //Получаем компонент
+        //РџРѕР»СѓС‡Р°РµРј РєРѕРјРїРѕРЅРµРЅС‚
         _animator = GetComponent<Animator>();
     }
 
@@ -21,13 +21,13 @@ public class PlayerAttackBandit : MonoBehaviour
         Hit();
     }
 
-    //Метод удара
+    //РњРµС‚РѕРґ СѓРґР°СЂР°
     private void Hit()
     {
-        //Получаем состояние из родительского класса
+        //РџРѕР»СѓС‡Р°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РёР· СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РєР»Р°СЃСЃР°
         _isHit = PlayerBandit.Instance.GetIsAttack();
 
-        //Производим удар
+        //РџСЂРѕРёР·РІРѕРґРёРј СѓРґР°СЂ
         if (_isHit)        
             _animator.SetBool(_boolHitAnimation, true);        
         else        

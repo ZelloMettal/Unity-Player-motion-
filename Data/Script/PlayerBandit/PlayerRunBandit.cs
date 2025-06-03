@@ -1,32 +1,32 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
-//Подвязываем компоненты к скрипту
+//РџРѕРґРІСЏР·С‹РІР°РµРј РєРѕРјРїРѕРЅРµРЅС‚С‹ Рє СЃРєСЂРёРїС‚Сѓ
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
 
-//Скрипт перемещения
+//РЎРєСЂРёРїС‚ РїРµСЂРµРјРµС‰РµРЅРёСЏ 
 public class PlayerRunBandit : MonoBehaviour
 {
-    //Определение направления движения персонажа
-    private const string Horizontal = "Horizontal"; //Перемещение по горизонтали
-    private const string Vertical = "Vertical";     //Перемещение по вертикали
+    //РћРїСЂРµРґРµР»РµРЅРёРµ РЅР°РїСЂР°РІР»РµРЅРёСЏ РґРІРёР¶РµРЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°
+    private const string Horizontal = "Horizontal"; //РџРµСЂРµРјРµС‰РµРЅРёРµ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+    private const string Vertical = "Vertical";     //РџРµСЂРµРјРµС‰РµРЅРёРµ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
 
-    //Свойства скрипта
+    //РЎРІРѕР№СЃС‚РІР° СЃРєСЂРёРїС‚Р°
     private Rigidbody2D _rigidbody;                 //
-    private Animator _animator;                     // Компоненты
+    private Animator _animator;                     // РљРѕРјРїРѕРЅРµРЅС‚С‹
     private SpriteRenderer _spriteRenderer;         //
-    private Vector2 _moveVector;                    // Направление движения персонажа
-    private string _boolMoveAnimation = "Move";     // Параметр для аниматора
-    private bool _isRuning = false;                 // Состояние бега
+    private Vector2 _moveVector;                    // РќР°РїСЂР°РІР»РµРЅРёРµ РґРІРёР¶РµРЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°
+    private string _boolMoveAnimation = "Move";     // РџР°СЂР°РјРµС‚СЂ РґР»СЏ Р°РЅРёРјР°С‚РѕСЂР°
+    private bool _isRuning = false;                 // РЎРѕСЃС‚РѕСЏРЅРёРµ Р±РµРіР°
 
-    //Свойсво для Инспектора
-    [SerializeField] private float _speed;  //Скорость персонажа
+    //РЎРІРѕР№СЃРІРѕ РґР»СЏ РРЅСЃРїРµРєС‚РѕСЂР°
+    [SerializeField] private float _speed;  //РЎРєРѕСЂРѕСЃС‚СЊ РїРµСЂСЃРѕРЅР°Р¶Р°
 
     private void Awake()
     {
-        //Получаем компоненты
+        //РџРѕР»СѓС‡Р°РµРј РєРѕРјРїРѕРЅРµРЅС‚С‹
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -35,35 +35,35 @@ public class PlayerRunBandit : MonoBehaviour
     {
         Move();
     }
-    //Метод перемещения персонажа
+    //РњРµС‚РѕРґ РїРµСЂРµРјРµС‰РµРЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°
     private void Move()
     {
-        //Получаем состояние из родительского класса
+        //РџРѕР»СѓС‡Р°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РёР· СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РєР»Р°СЃСЃР°
         _isRuning = PlayerBandit.Instance.GetIsRuning();
 
-        // Получаем данные нажатия кнопок
+        // РџРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРѕРє
         _moveVector.x = Input.GetAxis(Horizontal);
         _moveVector.y = Input.GetAxis(Vertical);
 
-        // Производим смещение персонажа
+        // РџСЂРѕРёР·РІРѕРґРёРј СЃРјРµС‰РµРЅРёРµ РїРµСЂСЃРѕРЅР°Р¶Р°
         if (_isRuning)
         {
-            //Если перемещается
+            //Р•СЃР»Рё РїРµСЂРµРјРµС‰Р°РµС‚СЃСЏ
             _animator.SetBool(_boolMoveAnimation, true);
             _rigidbody.velocity = new Vector2(_moveVector.x * _speed * Time.deltaTime, _moveVector.y * _speed * Time.deltaTime);
             FlipX();
         }
         else 
         {
-            //Если не перемещается
+            //Р•СЃР»Рё РЅРµ РїРµСЂРµРјРµС‰Р°РµС‚СЃСЏ
             _animator.SetBool(_boolMoveAnimation,false);
             _rigidbody.velocity = new Vector2(_moveVector.x, _moveVector.y);
         }
     }
-    //Метод поворота персонажа в сторону перемещения
+    //РњРµС‚РѕРґ РїРѕРІРѕСЂРѕС‚Р° РїРµСЂСЃРѕРЅР°Р¶Р° РІ СЃС‚РѕСЂРѕРЅСѓ РїРµСЂРµРјРµС‰РµРЅРёСЏ
     private void FlipX()
     {
-        // Определяем направление персонажа. Переворачиваем в зависимоости от изменения координат
+        // РћРїСЂРµРґРµР»СЏРµРј РЅР°РїСЂР°РІР»РµРЅРёРµ РїРµСЂСЃРѕРЅР°Р¶Р°. РџРµСЂРµРІРѕСЂР°С‡РёРІР°РµРј РІ Р·Р°РІРёСЃРёРјРѕРѕСЃС‚Рё РѕС‚ РёР·РјРµРЅРµРЅРёСЏ РєРѕРѕСЂРґРёРЅР°С‚
         if (_moveVector.x < 0)
         {
             _spriteRenderer.flipX = false;

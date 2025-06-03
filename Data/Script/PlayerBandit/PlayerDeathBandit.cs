@@ -1,18 +1,18 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 
-//Скрипт смерти
+//РЎРєСЂРёРїС‚ СЃРјРµСЂС‚Рё
 public class PlayerDeathBandit : MonoBehaviour
 {
-    //Свойства скрипта
-    private string _boolDeathAnimation = "Death";   // Параметр для аниматора
-    private bool _isDeath = false;                  // Состояние смерти
-    private Animator _animator;                     // Компонент
+    //РЎРІРѕР№СЃС‚РІР° СЃРєСЂРёРїС‚Р° 
+    private string _boolDeathAnimation = "Death";   // РџР°СЂР°РјРµС‚СЂ РґР»СЏ Р°РЅРёРјР°С‚РѕСЂР°
+    private bool _isDeath = false;                  // РЎРѕСЃС‚РѕСЏРЅРёРµ СЃРјРµСЂС‚Рё
+    private Animator _animator;                     // РљРѕРјРїРѕРЅРµРЅС‚
 
     private void Awake()
     {
-        //Получаем компонент
+        //РџРѕР»СѓС‡Р°РµРј РєРѕРјРїРѕРЅРµРЅС‚
         _animator = GetComponent<Animator>();
     }
     void Update()
@@ -20,13 +20,13 @@ public class PlayerDeathBandit : MonoBehaviour
         Death();
     }
 
-    //Метод смерти
+    //РњРµС‚РѕРґ СЃРјРµСЂС‚Рё
     private void Death()
     {
-        //Получаем состояние из родительского класса
+        //РџРѕР»СѓС‡Р°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РёР· СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РєР»Р°СЃСЃР°
         _isDeath = PlayerBandit.Instance.GetIsDeath();
 
-        //Производим смерт
+        //РџСЂРѕРёР·РІРѕРґРёРј СЃРјРµСЂС‚
         if (_isDeath)        
             _animator.SetBool(_boolDeathAnimation, true);
         

@@ -1,18 +1,18 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 
-//Скрипт возрождения
+//РЎРєСЂРёРїС‚ РІРѕР·СЂРѕР¶РґРµРЅРёСЏ 
 public class PlayerRevivalBandit : MonoBehaviour
 {
-    private string _boolRevivalAnimation = "Revival";   // Параметр для аниматора
-    private bool _isRevival = false;                    // Состояние смерти
-    private bool _isDeath = false;                      // Состояние возрождения
-    private Animator _animator;                         // Компонент
+    private string _boolRevivalAnimation = "Revival";   // РџР°СЂР°РјРµС‚СЂ РґР»СЏ Р°РЅРёРјР°С‚РѕСЂР°
+    private bool _isRevival = false;                    // РЎРѕСЃС‚РѕСЏРЅРёРµ СЃРјРµСЂС‚Рё
+    private bool _isDeath = false;                      // РЎРѕСЃС‚РѕСЏРЅРёРµ РІРѕР·СЂРѕР¶РґРµРЅРёСЏ
+    private Animator _animator;                         // РљРѕРјРїРѕРЅРµРЅС‚
 
     private void Awake()
     {
-        //Получаем компонен
+        //РџРѕР»СѓС‡Р°РµРј РєРѕРјРїРѕРЅРµРЅ
         _animator = GetComponent<Animator>();
     }
     void Update()
@@ -20,14 +20,14 @@ public class PlayerRevivalBandit : MonoBehaviour
         Revival();
     }
 
-    //Метод возрождения
+    //РњРµС‚РѕРґ РІРѕР·СЂРѕР¶РґРµРЅРёСЏ
     private void Revival()
     {
-        //Получаем состояние из родительского класса
+        //РџРѕР»СѓС‡Р°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РёР· СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РєР»Р°СЃСЃР°
         _isRevival = PlayerBandit.Instance.GetIsRevival();
         _isDeath = PlayerBandit.Instance.GetIsDeath();
 
-        //Производим возрождение
+        //РџСЂРѕРёР·РІРѕРґРёРј РІРѕР·СЂРѕР¶РґРµРЅРёРµ
         if (_isRevival && !_isDeath)        
             _animator.SetBool(_boolRevivalAnimation, true);        
         else        
